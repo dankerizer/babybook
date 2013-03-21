@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/custom.css" />
+		<script type="text/javascript" src="js/modernizr.custom.79639.js"></script>
+		<noscript><link rel="stylesheet" type="text/css" href="css/noJS.css" /></noscript>
+	</head>
+	<body>
+		<div class="container">
+
+			<section class="main">
+
+				<div class="bb-custom-wrapper">
+					<div id="bb-bookblock" class="bb-bookblock">
+						<div class="bb-item">
+                            <img src="images/demo1/1.jpg" alt="image02"/>
+						</div>
+						<div class="bb-item">
+							<a href="http://drbl.in/ciTX"><img src="images/demo1/2.jpg" alt="image02"/></a>
+						</div>
+						<div class="bb-item">
+							<a href="http://drbl.in/cLHx"><img src="images/demo1/3.jpg" alt="image03"/></a>
+						</div>
+						<div class="bb-item">
+							<a href="http://drbl.in/bAfn"><img src="images/demo1/4.jpg" alt="image04"/></a>
+						</div>
+						<div class="bb-item">
+							<a href="http://drbl.in/dcbE"><img src="images/demo1/5.jpg" alt="image05"/></a>
+						</div>
+					</div>
+					<h3>Illustrations by <a href="http://dribbble.com/kevinhowdeshell">Kevin Howdeshell</a></h3>
+					<nav>
+						<a id="bb-nav-prev" href="#">Previous</a>
+						<a id="bb-nav-next" href="#">Next</a>
+						<a id="bb-nav-jump" href="#" title="Go to last item">Last page</a>
+					</nav>
+				</div>
+				
+			</section>
+			
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquerypp.custom.js"></script>
+		<script type="text/javascript" src="js/jquery.bookblock.js"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				var Page = (function() {
+
+					var config = {
+							$bookBlock : $( '#bb-bookblock' ),
+							$navNext : $( '#bb-nav-next' ),
+							$navPrev : $( '#bb-nav-prev' ),
+							$navJump : $( '#bb-nav-jump' ),
+							bb : $( '#bb-bookblock' ).bookblock( {
+								speed : 800,
+								shadowSides : 0.8,
+								shadowFlip : 0.7
+							} )
+						},
+						init = function() {
+
+                            alert("STARTING");
+							initEvents();
+							
+						},
+						initEvents = function() {
+
+							var $slides = config.$bookBlock.children(),
+									totalSlides = $slides.length;
+
+							// add navigation events
+							config.$navNext.on( 'click', function() {
+
+								config.bb.next();
+								return false;
+
+							} );
+
+							config.$navPrev.on( 'click', function() {
+								
+								config.bb.prev();
+								return false;
+
+							} );
+
+							config.$navJump.on( 'click', function() {
+								
+								config.bb.jump( totalSlides );
+								return false;
+
+							} );
+							
+							// add swipe events
+							$slides.on( {
+
+								'swipeleft'		: function( event ) {
+								
+									config.bb.next();
+									return false;
+
+								},
+								'swiperight'	: function( event ) {
+								
+									config.bb.prev();
+									return false;
+									
+								}
+
+							} );
+
+						};
+
+						return { init : init };
+
+				})();
+
+            Page.init();
+
+            });
+		</script>
+
+        <script type="text/javascript" src="cordova-2.5.0.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+	</body>
+</html>
